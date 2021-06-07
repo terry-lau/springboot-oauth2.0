@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SSO Login</title>
+    <meta name="description" content="sso login">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/error.css}">
+</head>
+<body>
+<div class="content">
+    <img th:src="@{/images/dashboard/403.svg}" alt="">
+    <div class="content-r">
+        <h1>403</h1>
+        <p>抱歉，你无权访问该页面</p>
+        <button onclick="window.location.href='/sso/'">返回首页</button>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.easydatalink.tech.mapper.auth.CoreUserMapper">
+	<resultMap id="BaseResultMap" type="com.easydatalink.tech.entity.auth.CoreUser">
+		<id column="ID" property="id" jdbcType="DECIMAL" />
+		<result column="CODE" property="code" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="SYS_CODE" property="sysCode" jdbcType="VARCHAR" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+		<result column="USER_TYPE" property="userType" jdbcType="DECIMAL" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="PW" property="pw" jdbcType="VARCHAR" />
+		<result column="PW_SALT" property="pwSalt" jdbcType="VARCHAR" />
+		<result column="LAST_LOGIN_TIME" property="lastLoginTime" jdbcType="CHAR" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="CHAR" />
+		<result column="PW_TIME" property="pwTime" jdbcType="CHAR" />
+		<result column="STAFF_NO" property="staffNo" jdbcType="VARCHAR" />
+		<result column="LDAP_DN" property="ldapDn" jdbcType="VARCHAR" />
+		<result column="PW_INVALID_DATE" property="pwInvalidDate" jdbcType="CHAR" />
+		<result column="DOMAIN_ID" property="domainId" jdbcType="DECIMAL" />
+		<result column="TENANT_ID" property="tenantId" jdbcType="DECIMAL" />
+		<result column="STATUS" property="status" jdbcType="DECIMAL" />
+		<result column="IS_REMOVED" property="isRemoved" jdbcType="CHAR" />
+		<result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+		<result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_BY" property="modifyBy" jdbcType="VARCHAR" />
+		<result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, CODE, NAME, SYS_CODE, NOTE, USER_TYPE, EMAIL, PHONE, PW, PW_SALT,
+		LAST_LOGIN_TIME,
+		LAST_UPDATE_TIME, PW_TIME, STAFF_NO, LDAP_DN, PW_INVALID_DATE, DOMAIN_ID, TENANT_ID,
+		STATUS, IS_REMOVED, CREATE_BY, CREATE_DATE, MODIFY_BY, MODIFY_DATE
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from T_BD_USER
+		where ID = #{id,jdbcType=DECIMAL}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from T_BD_USER
+		where ID = #{id,jdbcType=DECIMAL}
+	</delete>
+
+	<insert id="insert" parameterType="com.easydatalink.tech.entity.auth.CoreUser">
+		insert into T_BD_USER (ID, CODE, NAME,
+		SYS_CODE, NOTE, USER_TYPE,
+		EMAIL, PHONE, PW, PW_SALT,
+		LAST_LOGIN_TIME, LAST_UPDATE_TIME, PW_TIME,
+		STAFF_NO, LDAP_DN, PW_INVALID_DATE,
+		DOMAIN_ID, TENANT_ID, STATUS,
+		IS_REMOVED, CREATE_BY, CREATE_DATE,
+		MODIFY_BY, MODIFY_DATE)
+		values (#{id,jdbcType=DECIMAL}, #{code,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{sysCode,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{userType,jdbcType=DECIMAL},
+		#{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{pw,jdbcType=VARCHAR}, #{pwSalt,jdbcType=VARCHAR},
+		#{lastLoginTime,jdbcType=CHAR}, #{lastUpdateTime,jdbcType=CHAR},
+		#{pwTime,jdbcType=CHAR},
+		#{staffNo,jdbcType=VARCHAR}, #{ldapDn,jdbcType=VARCHAR}, #{pwInvalidDate,jdbcType=CHAR},
+		#{domainId,jdbcType=DECIMAL}, #{tenantId,jdbcType=DECIMAL},
+		#{status,jdbcType=DECIMAL},
+		#{isRemoved,jdbcType=CHAR}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+		#{modifyBy,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP})
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.easydatalink.tech.entity.auth.CoreUser">
+		insert into T_BD_USER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="code != null">
+				CODE,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="sysCode != null">
+				SYS_CODE,
+			</if>
+			<if test="note != null">
+				NOTE,
+			</if>
+			<if test="userType != null">
+				USER_TYPE,
+			</if>
+			<if test="email != null">
+				EMAIL,
+			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			<if test="pw != null">
+				PW,
+			</if>
+			<if test="pwSalt != null">
+				PW_SALT,
+			</if>
+			<if test="lastLoginTime != null">
+				LAST_LOGIN_TIME,
+			</if>
+			<if test="lastUpdateTime != null">
+				LAST_UPDATE_TIME,
+			</if>
+			<if test="pwTime != null">
+				PW_TIME,
+			</if>
+			<if test="staffNo != null">
+				STAFF_NO,
+			</if>
+			<if test="ldapDn != null">
+				LDAP_DN,
+			</if>
+			<if test="pwInvalidDate != null">
+				PW_INVALID_DATE,
+			</if>
+			<if test="domainId != null">
+				DOMAIN_ID,
+			</if>
+			<if test="tenantId != null">
+				TENANT_ID,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="isRemoved != null">
+				IS_REMOVED,
+			</if>
+			<if test="createBy != null">
+				CREATE_BY,
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE,
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY,
+			</if>
+			<if test="modifyDate != null">
+				MODIFY_DATE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=DECIMAL},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sysCode != null">
+				#{sysCode,jdbcType=VARCHAR},
+			</if>
+			<if test="note != null">
+				#{note,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=DECIMAL},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="pw != null">
+				#{pw,jdbcType=VARCHAR},
+			</if>
+			<if test="pwSalt != null">
+				#{pwSalt,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				#{lastLoginTime,jdbcType=CHAR},
+			</if>
+			<if test="lastUpdateTime != null">
+				#{lastUpdateTime,jdbcType=CHAR},
+			</if>
+			<if test="pwTime != null">
+				#{pwTime,jdbcType=CHAR},
+			</if>
+			<if test="staffNo != null">
+				#{staffNo,jdbcType=VARCHAR},
+			</if>
+			<if test="ldapDn != null">
+				#{ldapDn,jdbcType=VARCHAR},
+			</if>
+			<if test="pwInvalidDate != null">
+				#{pwInvalidDate,jdbcType=CHAR},
+			</if>
+			<if test="domainId != null">
+				#{domainId,jdbcType=DECIMAL},
+			</if>
+			<if test="tenantId != null">
+				#{tenantId,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=DECIMAL},
+			</if>
+			<if test="isRemoved != null">
+				#{isRemoved,jdbcType=CHAR},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				#{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDate != null">
+				#{modifyDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.easydatalink.tech.entity.auth.CoreUser">
+		update T_BD_USER
+		<set>
+			<if test="code != null">
+				CODE = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sysCode != null">
+				SYS_CODE = #{sysCode,jdbcType=VARCHAR},
+			</if>
+			<if test="note != null">
+				NOTE = #{note,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				USER_TYPE = #{userType,jdbcType=DECIMAL},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="pw != null">
+				PW = #{pw,jdbcType=VARCHAR},
+			</if>
+			<if test="pwSalt != null">
+				PW_SALT = #{pwSalt,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=CHAR},
+			</if>
+			<if test="lastUpdateTime != null">
+				LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=CHAR},
+			</if>
+			<if test="pwTime != null">
+				PW_TIME = #{pwTime,jdbcType=CHAR},
+			</if>
+			<if test="staffNo != null">
+				STAFF_NO = #{staffNo,jdbcType=VARCHAR},
+			</if>
+			<if test="ldapDn != null">
+				LDAP_DN = #{ldapDn,jdbcType=VARCHAR},
+			</if>
+			<if test="pwInvalidDate != null">
+				PW_INVALID_DATE = #{pwInvalidDate,jdbcType=CHAR},
+			</if>
+			<if test="domainId != null">
+				DOMAIN_ID = #{domainId,jdbcType=DECIMAL},
+			</if>
+			<if test="tenantId != null">
+				TENANT_ID = #{tenantId,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=DECIMAL},
+			</if>
+			<if test="isRemoved != null">
+				IS_REMOVED = #{isRemoved,jdbcType=CHAR},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDate != null">
+				MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=DECIMAL}
+	</update>
+
+	<update id="updateByPrimaryKey" parameterType="com.easydatalink.tech.entity.auth.CoreUser">
+		update T_BD_USER
+		set CODE = #{code,jdbcType=VARCHAR},
+		NAME = #{name,jdbcType=VARCHAR},
+		SYS_CODE = #{sysCode,jdbcType=VARCHAR},
+		NOTE = #{note,jdbcType=VARCHAR},
+		USER_TYPE = #{userType,jdbcType=DECIMAL},
+		EMAIL = #{email,jdbcType=VARCHAR},
+		PHONE = #{phone,jdbcType=VARCHAR},
+		PW = #{pw,jdbcType=VARCHAR},
+		PW_SALT = #{pwSalt,jdbcType=VARCHAR},
+		LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=CHAR},
+		LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=CHAR},
+		PW_TIME = #{pwTime,jdbcType=CHAR},
+		STAFF_NO = #{staffNo,jdbcType=VARCHAR},
+		LDAP_DN = #{ldapDn,jdbcType=VARCHAR},
+		PW_INVALID_DATE = #{pwInvalidDate,jdbcType=CHAR},
+		DOMAIN_ID = #{domainId,jdbcType=DECIMAL},
+		TENANT_ID = #{tenantId,jdbcType=DECIMAL},
+		STATUS = #{status,jdbcType=DECIMAL},
+		IS_REMOVED = #{isRemoved,jdbcType=CHAR},
+		CREATE_BY = #{createBy,jdbcType=VARCHAR},
+		CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+		MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+		MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=DECIMAL}
+	</update>
+
+	<select id="findByCondition" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_BD_USER
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="code != null">
+					and CODE = #{code,jdbcType=VARCHAR}
+				</if>
+				<if test="name != null">
+					and NAME = #{name,jdbcType=VARCHAR}
+				</if>
+				<if test="userType != null">
+					and USER_TYPE = #{userType,jdbcType=VARCHAR}
+				</if>
+				<if test="domainId != null">
+					and DOMAIN_ID = #{domainId,jdbcType=DECIMAL}
+				</if>
+				<if test="loginName!= null">
+					and (CODE = #{loginName} or EMAIL = #{loginName} or PHONE =
+					#{loginName})
+				</if>
+				<if test="tenantId != null">
+					and TENANT_ID = #{tenantId,jdbcType=DECIMAL}
+				</if>
+				<if test="status != null">
+					and STATUS = #{status,jdbcType=DECIMAL}
+				</if>
+				and IS_REMOVED='0'
+			</trim>
+		</where>
+	</select>
+	<!-- 批量的获取用户列表 -->
+	<select id="betchSelectUserById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM T_BD_USER
+		<where>
+			ID IN
+			<foreach collection="list" open="(" close=")" index="index"
+				item="item" separator=",">
+				#{item}
+			</foreach>
+		</where>
+	</select>
+
+	<select id="getAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_BD_USER
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="code != null">
+					and CODE = #{code,jdbcType=VARCHAR}
+				</if>
+				<if test="name != null">
+					and NAME = #{name,jdbcType=VARCHAR}
+				</if>
+				<if test="userType != null">
+					and USER_TYPE = #{userType,jdbcType=VARCHAR}
+				</if>
+				<if test="platformNo != null">
+					and DOMAIN_ID != (select id from T_BD_TENANT where
+					OUT_TENANT_ID= #{platformNo,jdbcType=VARCHAR})
+				</if>
+				<if test="domainId != null">
+					and DOMAIN_ID = #{domainId,jdbcType=DECIMAL}
+				</if>
+				<if test="tenantId != null">
+					and TENANT_ID = #{tenantId,jdbcType=DECIMAL}
+				</if>
+				<if test="status != null">
+					and STATUS = #{status,jdbcType=DECIMAL}
+				</if>
+				and IS_REMOVED='0'
+			</trim>
+		</where>
+	</select>
+
+	<select id="getUserByOpenId" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select t.* from T_BD_USER t
+		left join t_gzh_info m
+		on t.name = m.user_name
+		where m.openid = #{openid}
+	</select>
+
+	<select id="findByPlatformNo" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select u.* from T_BD_USER u ,T_BD_TENANT t where u.TENANT_ID=t.ID
+		<if test="platformNo != null">
+			and t.OUT_TENANT_ID=#{platformNo,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<select id="findUserByLoginName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM T_BD_USER
+		<where>
+			IS_REMOVED='0' and CODE = #{userName,jdbcType=VARCHAR}
+		</where>
+	</select>
+
+	<select id="findByPageVPNGetAllUser" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_BD_USER
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="userName != null">
+					and name like
+					concat(concat('%',#{userName,jdbcType=VARCHAR}),'%')
+				</if>
+				<if test="loginName != null">
+					and name like
+					concat(concat('%',#{loginName,jdbcType=VARCHAR}),'%')
+				</if>
+			</trim>
+			and is_removed ='0'
+		</where>
+		order by id desc
+	</select>
+
+
+	<select id="findByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_BD_USER
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="userName != null">
+					and NAME = #{userName,jdbcType=VARCHAR}
+				</if>
+				<if test="userType != null">
+					and USER_TYPE = #{userType,jdbcType=VARCHAR}
+				</if>
+				<if test="domainId != null">
+					and DOMAIN_ID = #{domainId,jdbcType=DECIMAL}
+				</if>
+				<if test="tenantId != null">
+					and TENANT_ID = #{companyId,jdbcType=DECIMAL}
+				</if>
+				<if test="status != null">
+					and STATUS = #{status,jdbcType=DECIMAL}
+				</if>
+				and IS_REMOVED='0'
+			</trim>
+		</where>
+	</select>
+
+	<select id="getMemsByAccount" resultMap="BaseResultMap">
+		select *
+		from
+		T_BD_USER
+		where
+		status = 0 and (code=#{account,jdbcType=VARCHAR} or
+		phone=#{account,jdbcType=VARCHAR} or
+		email=#{account,jdbcType=VARCHAR})
+		<if test="pw != null">
+			and pw =#{pw,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<select id="getPlatformNoByName" parameterType="java.lang.String" resultType="com.easydatalink.tech.entity.auth.CoreUser">
+		select
+		t.*,n.out_tenant_id as platformNo
+		from T_BD_USER t
+		left join T_BD_TENANT n
+		on t.tenant_id = n.id
+		where (t.CODE = #{loginName} or t.EMAIL = #{loginName} or t.PHONE =
+					#{loginName})
+				and t.IS_REMOVED='0'
+	</select>
+
+	<select id="getClientInfo" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT distinct t.client_id ||'##' ||t.client_secret  FROM t_sso_oauth2_client t where t.tenant_id = #{platfromNo} and t.status = 0 and t.is_removed = 0
+	</select>
+</mapper>
